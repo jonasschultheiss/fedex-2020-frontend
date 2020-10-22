@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Header from './components/header';
+import LampControl from './container/lampControl';
 import Lamps from './container/lamps';
 
 function App() {
@@ -15,13 +16,17 @@ function App() {
     <>
       <BrowserRouter>
         <Header changed={iNumberChangedHandler} value={iNumber} />
-        <Switch>
-          <Route exact path="/">
-            <Lamps iNumber={iNumber} />
-          </Route>
-          <Route exact path="/lamps/:id"></Route>
-          <Redirect to="/" />
-        </Switch>
+        <main className="px-24 py-6">
+          <Switch>
+            <Route exact path="/">
+              <Lamps iNumber={iNumber} />
+            </Route>
+            <Route exact path="/lamps/:id">
+              <LampControl />
+            </Route>
+            <Redirect to="/" />
+          </Switch>
+        </main>
       </BrowserRouter>
     </>
   );
