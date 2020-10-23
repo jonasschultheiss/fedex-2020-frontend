@@ -76,38 +76,46 @@ export default function LampControl(props) {
       ) : loading ? (
         <p className="text-gray-500 text-xl">Loading...</p>
       ) : (
-        <>
-          <p className="text-4xl font-bold text-black">Light "{iNumber}"</p>
-          <PowerButton value={status} changed={statusChangedHandler} />
-          <Slider
-            name="Brightness"
-            min={0}
-            max={100}
-            steps={5}
-            changed={brightnessChangedHandler}
-            value={brightness}
-            disabled={status === 'off'}
-            text={`Brightness: ${brightness}%`}
-          />
-          <Slider
-            name="Temperature"
-            min={2700}
-            max={6500}
-            steps={100}
-            changed={temperatureChangedHandler}
-            value={temperature}
-            disabled={status === 'off'}
-            text={`Temperature: ${temperature} Kelvin`}
-          />
-          <div className="flex flex-row bg-gray-700 justify-evenly">
-            <KelvinButton hex="#ffa957" kelvin={2700} clicked={kelvinButtonClicked} />
-            <KelvinButton hex="#ffb46b" kelvin={3000} clicked={kelvinButtonClicked} />
-            <KelvinButton hex="#ffc489" kelvin={3500} clicked={kelvinButtonClicked} />
-            <KelvinButton hex="#ffd1a3" kelvin={4000} clicked={kelvinButtonClicked} />
-            <KelvinButton hex="#ffe4ce" kelvin={5000} clicked={kelvinButtonClicked} />
-            <KelvinButton hex="#fff9fd" kelvin={6500} clicked={kelvinButtonClicked} />
+        <div className=" bg-gray-800 rounded p-4">
+          <div className="flex flex-row justify-items-start items-center mb-8">
+            <div>
+              <PowerButton value={status} changed={statusChangedHandler} />
+            </div>
+            <h3 className="text-4xl ml-8 font-bold text-white">Light "{iNumber}"</h3>
           </div>
-        </>
+          <div className="flex flex-row justify-between">
+            <Slider
+              name="Brightness"
+              min={0}
+              max={100}
+              steps={5}
+              changed={brightnessChangedHandler}
+              value={brightness}
+              disabled={status === 'off'}
+              text={`Brightness: ${brightness}%`}
+              className="mr-2"
+            />
+            <Slider
+              name="Temperature"
+              min={2700}
+              max={6500}
+              steps={100}
+              changed={temperatureChangedHandler}
+              value={temperature}
+              disabled={status === 'off'}
+              text={`Temperature: ${temperature} Kelvin`}
+              className="ml-2"
+            />
+          </div>
+          <div className="flex flex-row bg-gray-700 justify-between p-4">
+            <KelvinButton hex="#ffa957" kelvin={2700} clicked={kelvinButtonClicked} disabled={status === 'off'} />
+            <KelvinButton hex="#ffb46b" kelvin={3000} clicked={kelvinButtonClicked} disabled={status === 'off'} />
+            <KelvinButton hex="#ffc489" kelvin={3500} clicked={kelvinButtonClicked} disabled={status === 'off'} />
+            <KelvinButton hex="#ffd1a3" kelvin={4000} clicked={kelvinButtonClicked} disabled={status === 'off'} />
+            <KelvinButton hex="#ffe4ce" kelvin={5000} clicked={kelvinButtonClicked} disabled={status === 'off'} />
+            <KelvinButton hex="#fff9fd" kelvin={6500} clicked={kelvinButtonClicked} disabled={status === 'off'} />
+          </div>
+        </div>
       )}
     </div>
   );
